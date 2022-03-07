@@ -90,12 +90,19 @@ function App() {
     setTodos([]);
   }
 
+  function editToDo(index) {
+    const todosCopy = [...todos];
+    console.log(todosCopy[index]);
+  }
+
   function completeToDo(index) {
     // on complete button click
     // update todo isComplete state
     // to TRUE
     const todosCopy = [...todos];
-    todosCopy[index].isComplete = true;
+    !todosCopy[index].isComplete
+      ? (todosCopy[index].isComplete = true)
+      : (todosCopy[index].isComplete = false);
     setTodos(todosCopy);
   }
 
@@ -123,6 +130,7 @@ function App() {
                   key={index}
                   index={index}
                   todo={todo}
+                  editToDo={editToDo}
                   completeToDo={completeToDo}
                   deleteToDo={deleteToDo}
                 />

@@ -48,12 +48,14 @@ const DeleteButton = styled(Button)`
   color: var(--white);
 `;
 
-function Todo({ todo, index, completeToDo, deleteToDo }) {
+function Todo({ todo, index, editToDo, completeToDo, deleteToDo }) {
   return (
     <ListItem>
       <TodoText isComplete={todo.isComplete}>{todo.item}</TodoText>
       <ButtonContainer>
-        <EditButton type="button">Edit</EditButton>
+        <EditButton type="button" onClick={() => editToDo(index)}>
+          Edit
+        </EditButton>
         <CompleteButton type="button" onClick={() => completeToDo(index)}>
           ✓
         </CompleteButton>
