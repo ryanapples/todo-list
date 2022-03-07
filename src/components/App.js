@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import GlobalStyle from '../styles/GlobalStyle';
 import TodoForm from './TodoForm';
+import Todo from './Todo';
 
 const Wrapper = styled.div`
   display: flex;
@@ -33,6 +34,10 @@ const TodoList = styled.div`
   }
 `;
 
+const List = styled.ul`
+  padding: 0;
+`;
+
 // App component acts as main TodoList
 function App() {
   const [todos, setTodos] = useState([
@@ -43,16 +48,24 @@ function App() {
       item: 'Finish book',
     },
   ]);
+
+  function addToDo(item) {
+    console.log(item);
+    setTodos([...todos, { item }]);
+  }
+
   return (
     <Wrapper>
       <GlobalStyle />
 
       <TodoList>
         <Heading>Today's List</Heading>
-        <TodoForm />
-        {todos.map((todo, index) => (
-          <li key={index}>{todo.item}</li>
-        ))}
+        <TodoForm addToDo={addToDo} />
+        <List>
+          {todos.map((todo, index) => (
+            <Todo key={index} todo={todo} />
+          ))}
+        </List>
       </TodoList>
     </Wrapper>
   );
