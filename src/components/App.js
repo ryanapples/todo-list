@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import GlobalStyle from '../styles/GlobalStyle';
 import TodoForm from './TodoForm';
 import Todo from './Todo';
+import ClearList from './ClearList';
 
 const Wrapper = styled.div`
   display: flex;
@@ -25,6 +26,7 @@ const Heading = styled.h1`
 const TodoList = styled.div`
   background-color: var(--bone-white);
   border-radius: 5px;
+  position: relative;
   padding: 10px 20px;
   max-width: 350px;
   width: 100%;
@@ -54,6 +56,11 @@ function App() {
     setTodos([...todos, { item }]);
   }
 
+  function clearAll() {
+    console.log('clear clicked');
+    setTodos([]);
+  }
+
   return (
     <Wrapper>
       <GlobalStyle />
@@ -61,11 +68,16 @@ function App() {
       <TodoList>
         <Heading>Today's List</Heading>
         <TodoForm addToDo={addToDo} />
-        <List>
-          {todos.map((todo, index) => (
-            <Todo key={index} todo={todo} />
-          ))}
-        </List>
+        {todos.length ? (
+          <List>
+            {todos.map((todo, index) => (
+              <Todo key={index} todo={todo} />
+            ))}
+          </List>
+        ) : (
+          <p>You have {todos.length} pending tasks</p>
+        )}
+        {todos.length ? <ClearList clearAll={clearAll} /> : null}
       </TodoList>
     </Wrapper>
   );
