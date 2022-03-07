@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const Form = styled.form`
@@ -55,41 +55,44 @@ const CancelButton = styled.button`
   }
 `;
 
-function EditTodoForm({ addEditToDo, cancelEditTodo }) {
-  // state - value of input
-  // setValue - dispatch function to update
-  // value state on input change
-  // handle form data with component
-  const [value, setValue] = useState('');
+function EditForm({
+  todoToEdit,
+  setTodoToEdit,
+  setIsEditingTodo,
+  handleTodoUpdate,
+}) {
+  const inputRef = useRef();
 
-  // handle form submit
-  function handleEditSubmit(e) {
-    // prevents page refresh
-    e.preventDefault();
-    if (!value) return; // if no value, exit out
-    addEditToDo(value); // fxn in App component
-    setValue(''); // reset value to empty string on submit
+  // handle edit form submit
+  function handleSubmit(e) {
+    e.preventDefault(); // prevent page refresh
+    if (!inputRef) return; // if no value, exit out
+    console.log(todoToEdit);
+    handleTodoUpdate(todoToEdit);
   }
 
-  function handleCancel() {}
-
   return (
-    <Form onSubmit={handleEditSubmit}>
+    <Form onSubmit={handleSubmit}>
       <InputContainer>
         <StyledInput
           id="todo"
           type="text"
           placeholder="Update todo item"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
+          ref={inputRef}
+          defaultValue={todoToEdit.item}
+          onChange={(e) =>
+            setTodoToEdit({ ...todoToEdit, item: e.target.value })
+          }
         />
       </InputContainer>
       <ActionContainer>
         <UpdateButton type="submit" value="Update" />
-        <CancelButton onClick={cancelEditTodo}>Cancel</CancelButton>
+        <CancelButton type="button" onClick={() => setIsEditingTodo(false)}>
+          Cancel
+        </CancelButton>
       </ActionContainer>
     </Form>
   );
 }
 
-export default EditTodoForm;
+export default EditForm;

@@ -8,7 +8,7 @@ import GlobalStyle from '../styles/GlobalStyle';
 import AddTodoForm from './AddTodoForm';
 import TodoItem from './TodoItem';
 import ClearList from './ClearList';
-import EditTodoForm from './EditToDoForm';
+import EditForm from './EditForm';
 
 const Wrapper = styled.div`
   display: flex;
@@ -74,13 +74,16 @@ function App() {
     {
       item: 'Feed cats 🐱',
       isComplete: false,
+      id: 0,
     },
     {
       item: 'Finish book',
       isComplete: false,
+      id: 1,
     },
   ]);
   const [isEditingTodo, setIsEditingTodo] = useState(false);
+  const [todoToEdit, setTodoToEdit] = useState({});
 
   function addToDo(item) {
     // spread operator to ensure immutability
@@ -112,13 +115,13 @@ function App() {
     setTodos([]);
   }
 
-  function editTodo(index) {
-    console.log('editTodo trigger', index);
+  function handleEditTodo(index) {
     setIsEditingTodo(true);
+    setTodoToEdit(todos[index]);
   }
 
-  function cancelEditTodo() {
-    setIsEditingTodo(false);
+  function handleTodoUpdate(todo) {
+    console.log('trigger todo update', todo);
   }
 
   return (
@@ -128,9 +131,14 @@ function App() {
       <TodoList>
         <Heading>Today's List</Heading>
         {isEditingTodo ? (
-          <EditTodoForm cancelEditTodo={cancelEditTodo} />
+          <EditForm
+            todoToEdit={todoToEdit}
+            setTodoToEdit={setTodoToEdit}
+            setIsEditingTodo={setIsEditingTodo}
+            handleTodoUpdate={handleTodoUpdate}
+          />
         ) : (
-          <AddTodoForm addToDo={addToDo} />
+          <AddTodoForm addToDo={addToDo} todosCount={todos.length} />
         )}
         {todos.length ? (
           <ListContainer>
@@ -140,7 +148,7 @@ function App() {
                   key={index}
                   index={index}
                   todo={todo}
-                  editToDo={editTodo}
+                  handleEditTodo={handleEditTodo}
                   completeToDo={completeToDo}
                   deleteToDo={deleteToDo}
                 />
