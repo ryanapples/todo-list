@@ -86,10 +86,6 @@ function App() {
     setTodos([...todos, { item, isComplete: false }]);
   }
 
-  function clearAll() {
-    setTodos([]);
-  }
-
   function editToDo(index) {
     const todosCopy = [...todos];
     console.log(todosCopy[index]);
@@ -115,13 +111,17 @@ function App() {
     setTodos([...todosCopy]);
   }
 
+  function clearTodos() {
+    setTodos([]);
+  }
+
   return (
     <Wrapper>
       <GlobalStyle />
 
       <TodoList>
         <Heading>Today's List</Heading>
-        <TodoForm addToDo={addToDo} />
+        <TodoForm addToDo={addToDo} editToDo={editToDo} />
         {todos.length ? (
           <ListContainer>
             <List>
@@ -140,7 +140,7 @@ function App() {
         ) : (
           <Paragraph>You have {todos.length} pending tasks</Paragraph>
         )}
-        {todos.length ? <ClearList clearAll={clearAll} /> : null}
+        {todos.length ? <ClearList clearTodos={clearTodos} /> : null}
       </TodoList>
     </Wrapper>
   );

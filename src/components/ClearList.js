@@ -12,11 +12,14 @@ const Button = styled.button`
   border-radius: var(--border-radius);
   width: 80px;
   height: 40px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
-function ClearList({ clearAll }) {
+function ClearList({ clearTodos }) {
   return (
-    <Button type="button" onClick={clearAll}>
+    <Button type="button" onClick={clearTodos}>
       Clear All
     </Button>
   );

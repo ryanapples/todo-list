@@ -53,7 +53,11 @@ function Todo({ todo, index, editToDo, completeToDo, deleteToDo }) {
     <ListItem>
       <TodoText isComplete={todo.isComplete}>{todo.item}</TodoText>
       <ButtonContainer>
-        <EditButton type="button" onClick={() => editToDo(index)}>
+        <EditButton
+          type="button"
+          disabled={todo.isComplete}
+          onClick={() => editToDo(index)}
+        >
           Edit
         </EditButton>
         <CompleteButton type="button" onClick={() => completeToDo(index)}>
