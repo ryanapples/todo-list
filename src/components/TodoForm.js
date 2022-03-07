@@ -16,8 +16,8 @@ const StyledInput = styled.input`
   border: none;
   width: 100%;
   padding: 10px;
-  border-radius: 7px;
-  margin-right: 7px;
+  border-radius: 5px;
+  margin-right: 8px;
 `;
 
 const StyledButton = styled.input`
@@ -25,9 +25,9 @@ const StyledButton = styled.input`
   color: var(--bone-white);
   font-weight: 600;
   border: none;
-  padding: 10px 25px;
-  min-width: 100px;
-  border-radius: 7px;
+  padding: 5px;
+  min-width: 75px;
+  border-radius: 5px;
 `;
 
 function TodoForm() {

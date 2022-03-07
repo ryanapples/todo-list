@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import GlobalStyle from '../styles/GlobalStyle';
 import TodoForm from './TodoForm';
@@ -9,6 +9,8 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   height: 100vh;
+  width: 100vw;
+  max-width: 100%;
 `;
 
 const Heading = styled.h1`
@@ -26,10 +28,21 @@ const TodoList = styled.div`
   max-width: 350px;
   width: 100%;
   min-height: 450px;
+  @media (max-width: 480px) {
+    max-width: 300px;
+  }
 `;
 
 // App component acts as main TodoList
 function App() {
+  const [todos, setTodos] = useState([
+    {
+      item: 'Feed cats 🐱',
+    },
+    {
+      item: 'Finish book',
+    },
+  ]);
   return (
     <Wrapper>
       <GlobalStyle />
@@ -37,6 +50,9 @@ function App() {
       <TodoList>
         <Heading>Today's List</Heading>
         <TodoForm />
+        {todos.map((todo, index) => (
+          <li key={index}>{todo.item}</li>
+        ))}
       </TodoList>
     </Wrapper>
   );
