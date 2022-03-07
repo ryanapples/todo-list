@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+
+// styles
 import styled from 'styled-components';
 import GlobalStyle from '../styles/GlobalStyle';
+
+// components
 import TodoForm from './TodoForm';
 import Todo from './Todo';
 import ClearList from './ClearList';
@@ -25,7 +29,7 @@ const Heading = styled.h1`
 
 const TodoList = styled.div`
   background-color: var(--bone-white);
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   position: relative;
   padding: 10px 20px;
   max-width: 350px;
@@ -36,8 +40,31 @@ const TodoList = styled.div`
   }
 `;
 
+const ListContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+`;
+
 const List = styled.ul`
   padding: 0;
+  width: 100%;
+  height: 290px;
+  overflow: auto;
+  box-sizing: content-box;
+  &:hover {
+    overflow-y: scroll;
+  }
+  &::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+  }
+`;
+
+const Paragraph = styled.p`
+  margin: 0;
+  padding: 15px 25px;
+  text-align: center;
 `;
 
 // App component acts as main TodoList
@@ -45,20 +72,40 @@ function App() {
   const [todos, setTodos] = useState([
     {
       item: 'Feed cats 🐱',
+      isComplete: false,
     },
     {
       item: 'Finish book',
+      isComplete: false,
     },
   ]);
 
   function addToDo(item) {
-    console.log(item);
-    setTodos([...todos, { item }]);
+    // spread operator to ensure immutability
+    // of state object
+    setTodos([...todos, { item, isComplete: false }]);
   }
 
   function clearAll() {
-    console.log('clear clicked');
     setTodos([]);
+  }
+
+  function completeToDo(index) {
+    // on complete button click
+    // update todo isComplete state
+    // to TRUE
+    const todosCopy = [...todos];
+    todosCopy[index].isComplete = true;
+    setTodos(todosCopy);
+  }
+
+  function deleteToDo(index) {
+    // state immutibility
+    // create new copy of todo list
+    // and update
+    const todosCopy = [...todos];
+    todosCopy.splice(index, 1);
+    setTodos([...todosCopy]);
   }
 
   return (
@@ -69,13 +116,21 @@ function App() {
         <Heading>Today's List</Heading>
         <TodoForm addToDo={addToDo} />
         {todos.length ? (
-          <List>
-            {todos.map((todo, index) => (
-              <Todo key={index} todo={todo} />
-            ))}
-          </List>
+          <ListContainer>
+            <List>
+              {todos.map((todo, index) => (
+                <Todo
+                  key={index}
+                  index={index}
+                  todo={todo}
+                  completeToDo={completeToDo}
+                  deleteToDo={deleteToDo}
+                />
+              ))}
+            </List>
+          </ListContainer>
         ) : (
-          <p>You have {todos.length} pending tasks</p>
+          <Paragraph>You have {todos.length} pending tasks</Paragraph>
         )}
         {todos.length ? <ClearList clearAll={clearAll} /> : null}
       </TodoList>
