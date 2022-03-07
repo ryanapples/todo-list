@@ -12,7 +12,8 @@ const GlobalStyle = createGlobalStyle`
   }
   
   body {
-    background-color: var(--fern-green);
+    background-color: var(--background-color);
+    background-image: var(--background-image);
   }
 `;
 
