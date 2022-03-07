@@ -5,9 +5,10 @@ import styled from 'styled-components';
 import GlobalStyle from '../styles/GlobalStyle';
 
 // components
-import TodoForm from './TodoForm';
-import Todo from './Todo';
+import AddTodoForm from './AddTodoForm';
+import TodoItem from './TodoItem';
 import ClearList from './ClearList';
+import EditTodoForm from './EditToDoForm';
 
 const Wrapper = styled.div`
   display: flex;
@@ -79,16 +80,12 @@ function App() {
       isComplete: false,
     },
   ]);
+  const [isEditingTodo, setIsEditingTodo] = useState(false);
 
   function addToDo(item) {
     // spread operator to ensure immutability
     // of state object
     setTodos([...todos, { item, isComplete: false }]);
-  }
-
-  function editToDo(index) {
-    const todosCopy = [...todos];
-    console.log(todosCopy[index]);
   }
 
   function completeToDo(index) {
@@ -115,22 +112,35 @@ function App() {
     setTodos([]);
   }
 
+  function editTodo(index) {
+    console.log('editTodo trigger', index);
+    setIsEditingTodo(true);
+  }
+
+  function cancelEditTodo() {
+    setIsEditingTodo(false);
+  }
+
   return (
     <Wrapper>
       <GlobalStyle />
 
       <TodoList>
         <Heading>Today's List</Heading>
-        <TodoForm addToDo={addToDo} editToDo={editToDo} />
+        {isEditingTodo ? (
+          <EditTodoForm cancelEditTodo={cancelEditTodo} />
+        ) : (
+          <AddTodoForm addToDo={addToDo} />
+        )}
         {todos.length ? (
           <ListContainer>
             <List>
               {todos.map((todo, index) => (
-                <Todo
+                <TodoItem
                   key={index}
                   index={index}
                   todo={todo}
-                  editToDo={editToDo}
+                  editToDo={editTodo}
                   completeToDo={completeToDo}
                   deleteToDo={deleteToDo}
                 />

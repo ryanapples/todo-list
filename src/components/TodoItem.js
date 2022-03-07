@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const ListItem = styled.li`
@@ -56,6 +56,7 @@ function Todo({ todo, index, editToDo, completeToDo, deleteToDo }) {
         <EditButton
           type="button"
           disabled={todo.isComplete}
+          editTodo={index}
           onClick={() => editToDo(index)}
         >
           Edit
