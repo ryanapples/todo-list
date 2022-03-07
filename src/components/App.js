@@ -10,14 +10,22 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   height: 100vh;
-  width: 100vw;
+  max-width: 450px;
+  margin: 0 auto;
+`;
+
+const Heading = styled.h1`
+  font-size: 40px;
+  color: var(--bone-white);
+  margin-top: 0;
+  margin-bottom: 10px;
+  width: 100%;
 `;
 
 const TodoList = styled.div`
   background-color: var(--bone-white);
-  border-radius: 7px;
+  border-radius: 10px;
   padding: 7px;
-  max-width: 500px;
   min-height: 450px;
   width: 100%;
 `;
@@ -27,9 +35,10 @@ function App() {
   return (
     <Wrapper>
       <GlobalStyle />
-      <Header />
-      <TodoList>TodoList</TodoList>
-      <TodoForm />
+      <Heading>Today's List</Heading>
+      <TodoList>
+        <TodoForm />
+      </TodoList>
     </Wrapper>
   );
 }
