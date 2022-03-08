@@ -38,6 +38,7 @@ const UpdateButton = styled.input`
   border: none;
   border-radius: var(--border-radius);
   -webkit-border-radius: var(--border-radius);
+  -webkit-appearance: none;
   &:hover {
     cursor: pointer;
   }
