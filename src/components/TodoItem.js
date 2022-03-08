@@ -52,8 +52,8 @@ function TodoItem({
   todo,
   index,
   handleEditTodo,
-  completeToDo,
-  deleteToDo,
+  handleCompleteToDo,
+  handleDeleteToDo,
   isEditingTodo,
 }) {
   return (
@@ -69,10 +69,13 @@ function TodoItem({
           >
             Edit
           </EditButton>
-          <CompleteButton type="button" onClick={() => completeToDo(index)}>
+          <CompleteButton
+            type="button"
+            onClick={() => handleCompleteToDo(index)}
+          >
             ✓
           </CompleteButton>
-          <DeleteButton type="button" onClick={() => deleteToDo(index)}>
+          <DeleteButton type="button" onClick={() => handleDeleteToDo(index)}>
             ✕
           </DeleteButton>
         </ButtonContainer>

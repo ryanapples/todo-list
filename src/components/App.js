@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import GlobalStyle from '../styles/GlobalStyle';
 
 // components
-import AddTodoForm from './AddTodoForm';
+import AddForm from './AddForm';
 import TodoItem from './TodoItem';
 import ClearList from './ClearList';
 import EditForm from './EditForm';
@@ -85,13 +85,13 @@ function App() {
   const [isEditingTodo, setIsEditingTodo] = useState(false);
   const [todoToEdit, setTodoToEdit] = useState({});
 
-  function addToDo(item, id) {
+  function handleAddToDo(item, id) {
     // spread operator to ensure immutability
     // of state object
     setTodos([...todos, { item, isComplete: false, id: id }]);
   }
 
-  function completeToDo(index) {
+  function handleCompleteToDo(index) {
     // on complete button click
     // update todo isComplete state
     // to TRUE
@@ -102,7 +102,7 @@ function App() {
     setTodos(todosCopy);
   }
 
-  function deleteToDo(index) {
+  function handleDeleteToDo(index) {
     // state immutibility
     // create new copy of todo list
     // and update
@@ -111,7 +111,7 @@ function App() {
     setTodos([...todosCopy]);
   }
 
-  function clearTodos() {
+  function handleClearTodos() {
     setTodos([]);
     setIsEditingTodo(false);
   }
@@ -143,7 +143,7 @@ function App() {
             handleTodoUpdate={handleTodoUpdate}
           />
         ) : (
-          <AddTodoForm addToDo={addToDo} todosCount={todos.length} />
+          <AddForm handleAddToDo={handleAddToDo} todosCount={todos.length} />
         )}
         {todos.length ? (
           <ListContainer>
@@ -154,8 +154,8 @@ function App() {
                   index={index}
                   todo={todo}
                   handleEditTodo={handleEditTodo}
-                  completeToDo={completeToDo}
-                  deleteToDo={deleteToDo}
+                  handleCompleteToDo={handleCompleteToDo}
+                  handleDeleteToDo={handleDeleteToDo}
                   isEditingTodo={isEditingTodo}
                 />
               ))}
@@ -164,7 +164,9 @@ function App() {
         ) : (
           <Paragraph>You have {todos.length} pending tasks</Paragraph>
         )}
-        {todos.length ? <ClearList clearTodos={clearTodos} /> : null}
+        {todos.length ? (
+          <ClearList handleClearTodos={handleClearTodos} />
+        ) : null}
       </TodoList>
     </Wrapper>
   );

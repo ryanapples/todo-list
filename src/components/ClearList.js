@@ -17,9 +17,9 @@ const Button = styled.button`
   }
 `;
 
-function ClearList({ clearTodos }) {
+function ClearList({ handleClearTodos }) {
   return (
-    <Button type="button" onClick={clearTodos}>
+    <Button type="button" onClick={handleClearTodos}>
       Clear All
     </Button>
   );
