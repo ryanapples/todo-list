@@ -8,6 +8,7 @@ const variables = css`
     --bone-white: #f9f6ee;
     --white: #ffffff;
     --black: #000000;
+    --disabled: #ccc;
     --iris: #5d3fd3;
 
     --border-radius: 5px;

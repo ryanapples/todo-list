@@ -41,6 +41,10 @@ const EditButton = styled(Button)`
   width: auto;
   padding: 5px 15px;
   margin-right: 8px;
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
 `;
 
 const CompleteButton = styled(Button)`
