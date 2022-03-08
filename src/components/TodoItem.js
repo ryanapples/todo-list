@@ -8,7 +8,7 @@ const ListItem = styled.li`
   background-color: var(--white);
   border-radius: var(--border-radius);
   list-style-type: none;
-  padding: 12px;
+  padding: 15px 10px;
   margin-bottom: 7px;
 `;
 
@@ -24,8 +24,11 @@ const ButtonContainer = styled.div`
 const Button = styled.button`
   border: none;
   border-radius: var(--border-radius);
-  width: 25px;
-  height: 25px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:hover {
     cursor: pointer;
   }
@@ -34,13 +37,13 @@ const Button = styled.button`
 const EditButton = styled(Button)`
   width: auto;
   padding: 5px 15px;
-  margin-right: 5px;
+  margin-right: 8px;
 `;
 
 const CompleteButton = styled(Button)`
   background-color: var(--fern-green);
   color: var(--white);
-  margin-right: 5px;
+  margin-right: 8px;
 `;
 
 const DeleteButton = styled(Button)`
