@@ -37,7 +37,8 @@ const Button = styled.button`
 `;
 
 const EditButton = styled(Button)`
-  color: var(--black);
+  background-color: var(--black);
+  color: var(--white);
   width: auto;
   padding: 5px 15px;
   margin-right: 8px;
@@ -54,7 +55,7 @@ const CompleteButton = styled(Button)`
 `;
 
 const DeleteButton = styled(Button)`
-  background-color: red;
+  background-color: var(--red);
   color: var(--white);
 `;
 

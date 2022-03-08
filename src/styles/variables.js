@@ -10,6 +10,7 @@ const variables = css`
     --black: #000000;
     --disabled: #ccc;
     --iris: #5d3fd3;
+    --red: #c41e3a;
 
     --border-radius: 5px;
     --max-width: 500px;
