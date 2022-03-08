@@ -31,6 +31,7 @@ const StyledButton = styled.input`
   min-width: 75px;
   border-radius: var(--border-radius);
   -webkit-border-radius: var(--border-radius);
+  -webkit-appearance: none;
 `;
 
 function TodoForm({ handleAddToDo, todosCount }) {

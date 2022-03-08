@@ -7,6 +7,7 @@ const variables = css`
     --fern-green: #4f7942;
     --bone-white: #f9f6ee;
     --white: #ffffff;
+    --black: #000000;
     --iris: #5d3fd3;
 
     --border-radius: 5px;

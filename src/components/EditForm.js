@@ -30,12 +30,12 @@ const ActionContainer = styled.div`
 const UpdateButton = styled.input`
   background-color: var(--fern-green);
   color: var(--bone-white);
-  border: none;
   font-weight: 600;
   padding: 12px;
   margin-right: 5px;
   min-width: 60px;
   flex-basis: 50%;
+  border: none;
   border-radius: var(--border-radius);
   -webkit-border-radius: var(--border-radius);
   &:hover {

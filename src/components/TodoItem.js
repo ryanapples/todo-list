@@ -37,6 +37,7 @@ const Button = styled.button`
 `;
 
 const EditButton = styled(Button)`
+  color: var(--black);
   width: auto;
   padding: 5px 15px;
   margin-right: 8px;
