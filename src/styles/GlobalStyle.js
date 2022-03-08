@@ -7,7 +7,7 @@ import variables from './variables';
 const GlobalStyle = createGlobalStyle`
   ${variables};
 
-  html {
+  html, body {
     overflow: hidden;
   }
   
