@@ -31,7 +31,7 @@ const StyledButton = styled.input`
   border-radius: var(--border-radius);
 `;
 
-function TodoForm({ addToDo }) {
+function TodoForm({ addToDo, todosCount }) {
   // state - value of input
   // setValue - dispatch function to update
   // value state on input change
@@ -43,7 +43,7 @@ function TodoForm({ addToDo }) {
     // prevents page refresh
     e.preventDefault();
     if (!value) return; // if no value, exit out
-    addToDo(value); // fxn in App component
+    addToDo(value, todosCount + 1); // fxn in App component
     setValue(''); // reset value to empty string on submit
   }
 

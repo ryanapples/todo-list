@@ -14,6 +14,11 @@ const GlobalStyle = createGlobalStyle`
   body {
     background-color: var(--background-color);
     background-image: var(--background-image);
+    font-family: var(--font-family)
+  }
+
+  input, button {
+    font-family: 'Inter', sans-serif;
   }
 `;
 

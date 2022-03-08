@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 const Form = styled.form`
@@ -66,8 +66,7 @@ function EditForm({
   // handle edit form submit
   function handleSubmit(e) {
     e.preventDefault(); // prevent page refresh
-    if (!inputRef) return; // if no value, exit out
-    console.log(todoToEdit);
+    if (!inputRef.current.value) return; // if no value, exit out
     handleTodoUpdate(todoToEdit);
   }
 

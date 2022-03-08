@@ -11,6 +11,8 @@ const variables = css`
 
     --border-radius: 5px;
     --max-width: 500px;
+
+    --font-family: 'Inter', sans-serif;
   }
 `;
 

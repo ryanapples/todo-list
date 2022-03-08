@@ -48,28 +48,37 @@ const DeleteButton = styled(Button)`
   color: var(--white);
 `;
 
-function Todo({ todo, index, handleEditTodo, completeToDo, deleteToDo }) {
+function TodoItem({
+  todo,
+  index,
+  handleEditTodo,
+  completeToDo,
+  deleteToDo,
+  isEditingTodo,
+}) {
   return (
     <ListItem>
       <TodoText isComplete={todo.isComplete}>{todo.item}</TodoText>
-      <ButtonContainer>
-        <EditButton
-          type="button"
-          disabled={todo.isComplete}
-          handleEditTodo={index}
-          onClick={() => handleEditTodo(index)}
-        >
-          Edit
-        </EditButton>
-        <CompleteButton type="button" onClick={() => completeToDo(index)}>
-          ✓
-        </CompleteButton>
-        <DeleteButton type="button" onClick={() => deleteToDo(index)}>
-          X
-        </DeleteButton>
-      </ButtonContainer>
+      {!isEditingTodo ? (
+        <ButtonContainer>
+          <EditButton
+            type="button"
+            disabled={todo.isComplete}
+            handleEditTodo={index}
+            onClick={() => handleEditTodo(index)}
+          >
+            Edit
+          </EditButton>
+          <CompleteButton type="button" onClick={() => completeToDo(index)}>
+            ✓
+          </CompleteButton>
+          <DeleteButton type="button" onClick={() => deleteToDo(index)}>
+            ✕
+          </DeleteButton>
+        </ButtonContainer>
+      ) : null}
     </ListItem>
   );
 }
 
-export default Todo;
+export default TodoItem;

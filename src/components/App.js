@@ -85,10 +85,10 @@ function App() {
   const [isEditingTodo, setIsEditingTodo] = useState(false);
   const [todoToEdit, setTodoToEdit] = useState({});
 
-  function addToDo(item) {
+  function addToDo(item, id) {
     // spread operator to ensure immutability
     // of state object
-    setTodos([...todos, { item, isComplete: false }]);
+    setTodos([...todos, { item, isComplete: false, id: id }]);
   }
 
   function completeToDo(index) {
@@ -113,6 +113,7 @@ function App() {
 
   function clearTodos() {
     setTodos([]);
+    setIsEditingTodo(false);
   }
 
   function handleEditTodo(index) {
@@ -120,8 +121,12 @@ function App() {
     setTodoToEdit(todos[index]);
   }
 
-  function handleTodoUpdate(todo) {
-    console.log('trigger todo update', todo);
+  function handleTodoUpdate(updatedTodo) {
+    const updatedTodos = todos.map((todo) => {
+      return todo.id === updatedTodo.id ? updatedTodo : todo;
+    });
+    setIsEditingTodo(false);
+    setTodos(updatedTodos);
   }
 
   return (
@@ -151,6 +156,7 @@ function App() {
                   handleEditTodo={handleEditTodo}
                   completeToDo={completeToDo}
                   deleteToDo={deleteToDo}
+                  isEditingTodo={isEditingTodo}
                 />
               ))}
             </List>
