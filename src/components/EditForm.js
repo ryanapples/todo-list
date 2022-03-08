@@ -18,6 +18,7 @@ const StyledInput = styled.input`
   padding: 15px;
   font-size: 16px;
   border-radius: var(--border-radius);
+  -webkit-border-radius: var(--border-radius);
   margin-right: 8px;
 `;
 
@@ -36,6 +37,7 @@ const UpdateButton = styled.input`
   min-width: 60px;
   flex-basis: 50%;
   border-radius: var(--border-radius);
+  -webkit-border-radius: var(--border-radius);
   &:hover {
     cursor: pointer;
   }
@@ -49,6 +51,7 @@ const CancelButton = styled.button`
   min-width: 60px;
   border: none;
   border-radius: var(--border-radius);
+  -webkit-border-radius: var(--border-radius);
   flex-basis: 50%;
   &:hover {
     cursor: pointer;

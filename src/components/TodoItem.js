@@ -7,6 +7,7 @@ const ListItem = styled.li`
   justify-content: space-between;
   background-color: var(--white);
   border-radius: var(--border-radius);
+  -webkit-border-radius: var(--border-radius);
   list-style-type: none;
   padding: 15px 10px;
   margin-bottom: 7px;
@@ -24,6 +25,7 @@ const ButtonContainer = styled.div`
 const Button = styled.button`
   border: none;
   border-radius: var(--border-radius);
+  -webkit-border-radius: var(--border-radius);
   width: 40px;
   height: 40px;
   display: flex;
