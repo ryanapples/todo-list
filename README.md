@@ -2,7 +2,20 @@
   Todo List 
 </h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img width="1678" alt="todo-list-image" src="https://user-images.githubusercontent.com/25543587/157145443-323b6128-79bf-41b1-87ac-60c1bfb6c72d.png" />
+
+## 🧪 Site Resources
+
+This project was bootstrapped with
+[Create React App](https://github.com/facebook/create-react-app)
+
+[React](https://facebook.github.io/create-react-app/docs/getting-started)
+
+[styled-components](https://styled-components.com/)
+
+[Google Fonts](https://fonts.google.com/)
+
+[Netlify](https://www.netlify.com/)
 
 ## Available Scripts
 
