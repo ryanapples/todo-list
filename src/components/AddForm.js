@@ -16,7 +16,8 @@ const StyledInput = styled.input`
   border: none;
   width: 100%;
   padding: 15px;
-  border-radius: 5px;
+  font-size: 14px;
+  border-radius: var(--border-radius);
   margin-right: 8px;
 `;
 
@@ -27,10 +28,10 @@ const StyledButton = styled.input`
   border: none;
   padding: 12px;
   min-width: 75px;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
 `;
 
-function TodoForm({ addToDo }) {
+function TodoForm({ handleAddToDo, todosCount }) {
   // state - value of input
   // setValue - dispatch function to update
   // value state on input change
@@ -42,7 +43,7 @@ function TodoForm({ addToDo }) {
     // prevents page refresh
     e.preventDefault();
     if (!value) return; // if no value, exit out
-    addToDo(value); // lift up state to App 'addToDo' fxn
+    handleAddToDo(value, todosCount + 1); // fxn in App component
     setValue(''); // reset value to empty string on submit
   }
 

@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
+
+// styles
 import styled from 'styled-components';
 import GlobalStyle from '../styles/GlobalStyle';
-import TodoForm from './TodoForm';
-import Todo from './Todo';
+
+// components
+import AddForm from './AddForm';
+import TodoItem from './TodoItem';
+import ClearList from './ClearList';
+import EditForm from './EditForm';
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,7 +30,8 @@ const Heading = styled.h1`
 
 const TodoList = styled.div`
   background-color: var(--bone-white);
-  border-radius: 5px;
+  border-radius: var(--border-radius);
+  position: relative;
   padding: 10px 20px;
   max-width: 350px;
   width: 100%;
@@ -34,8 +41,31 @@ const TodoList = styled.div`
   }
 `;
 
+const ListContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+`;
+
 const List = styled.ul`
   padding: 0;
+  width: 100%;
+  height: 290px;
+  overflow: auto;
+  box-sizing: content-box;
+  &:hover {
+    overflow-y: scroll;
+  }
+  &::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+  }
+`;
+
+const Paragraph = styled.p`
+  margin: 0;
+  padding: 15px 25px;
+  text-align: center;
 `;
 
 // App component acts as main TodoList
@@ -43,15 +73,60 @@ function App() {
   const [todos, setTodos] = useState([
     {
       item: 'Feed cats 🐱',
+      isComplete: false,
+      id: 0,
     },
     {
       item: 'Finish book',
+      isComplete: false,
+      id: 1,
     },
   ]);
+  const [isEditingTodo, setIsEditingTodo] = useState(false);
+  const [todoToEdit, setTodoToEdit] = useState({});
 
-  function addToDo(item) {
-    console.log(item);
-    setTodos([...todos, { item }]);
+  function handleAddToDo(item, id) {
+    // spread operator to ensure immutability
+    // of state object
+    setTodos([...todos, { item, isComplete: false, id: id }]);
+  }
+
+  function handleCompleteToDo(index) {
+    // on complete button click
+    // update todo isComplete state
+    // to TRUE
+    const todosCopy = [...todos];
+    !todosCopy[index].isComplete
+      ? (todosCopy[index].isComplete = true)
+      : (todosCopy[index].isComplete = false);
+    setTodos(todosCopy);
+  }
+
+  function handleDeleteToDo(index) {
+    // state immutibility
+    // create new copy of todo list
+    // and update
+    const todosCopy = [...todos];
+    todosCopy.splice(index, 1);
+    setTodos([...todosCopy]);
+  }
+
+  function handleClearTodos() {
+    setTodos([]);
+    setIsEditingTodo(false);
+  }
+
+  function handleEditTodo(index) {
+    setIsEditingTodo(true);
+    setTodoToEdit(todos[index]);
+  }
+
+  function handleTodoUpdate(updatedTodo) {
+    const updatedTodos = todos.map((todo) => {
+      return todo.id === updatedTodo.id ? updatedTodo : todo;
+    });
+    setIsEditingTodo(false);
+    setTodos(updatedTodos);
   }
 
   return (
@@ -60,12 +135,38 @@ function App() {
 
       <TodoList>
         <Heading>Today's List</Heading>
-        <TodoForm addToDo={addToDo} />
-        <List>
-          {todos.map((todo, index) => (
-            <Todo key={index} todo={todo} />
-          ))}
-        </List>
+        {isEditingTodo ? (
+          <EditForm
+            todoToEdit={todoToEdit}
+            setTodoToEdit={setTodoToEdit}
+            setIsEditingTodo={setIsEditingTodo}
+            handleTodoUpdate={handleTodoUpdate}
+          />
+        ) : (
+          <AddForm handleAddToDo={handleAddToDo} todosCount={todos.length} />
+        )}
+        {todos.length ? (
+          <ListContainer>
+            <List>
+              {todos.map((todo, index) => (
+                <TodoItem
+                  key={index}
+                  index={index}
+                  todo={todo}
+                  handleEditTodo={handleEditTodo}
+                  handleCompleteToDo={handleCompleteToDo}
+                  handleDeleteToDo={handleDeleteToDo}
+                  isEditingTodo={isEditingTodo}
+                />
+              ))}
+            </List>
+          </ListContainer>
+        ) : (
+          <Paragraph>You have {todos.length} pending tasks</Paragraph>
+        )}
+        {todos.length ? (
+          <ClearList handleClearTodos={handleClearTodos} />
+        ) : null}
       </TodoList>
     </Wrapper>
   );
