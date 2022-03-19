@@ -31,8 +31,9 @@ const Heading = styled.h1`
 const TodoList = styled.div`
   background-color: var(--bone-white);
   border-radius: var(--border-radius);
+  -webkit-border-radius: var(--border-radius);
   position: relative;
-  padding: 10px 20px;
+  padding: 20px;
   max-width: 350px;
   width: 100%;
   min-height: 450px;

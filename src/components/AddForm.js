@@ -18,6 +18,7 @@ const StyledInput = styled.input`
   padding: 15px;
   font-size: 16px;
   border-radius: var(--border-radius);
+  -webkit-border-radius: var(--border-radius);
   margin-right: 8px;
 `;
 
@@ -29,6 +30,7 @@ const StyledButton = styled.input`
   padding: 12px;
   min-width: 75px;
   border-radius: var(--border-radius);
+  -webkit-border-radius: var(--border-radius);
 `;
 
 function TodoForm({ handleAddToDo, todosCount }) {

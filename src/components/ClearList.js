@@ -9,7 +9,7 @@ const Button = styled.button`
   color: var(--white);
   font-weight: 600;
   border: none;
-  border-radius: var(--border-radius);
+  -webkit-border-radius: var(--border-radius);
   width: 80px;
   height: 40px;
   &:hover {
