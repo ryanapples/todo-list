@@ -6,6 +6,12 @@
 
 [View app demo here](https://react-todolist-789.netlify.app/)
 
+Todo
+
+- Button Component
+- Clean up styles
+- Props for styled-components
+
 ## 🧪 Site Resources
 
 This project was bootstrapped with
