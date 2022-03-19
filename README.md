@@ -4,6 +4,14 @@
 
 <img width="1678" alt="todo-list-image" src="https://user-images.githubusercontent.com/25543587/157145443-323b6128-79bf-41b1-87ac-60c1bfb6c72d.png" />
 
+[View app demo here](https://react-todolist-789.netlify.app/)
+
+Todo
+
+- Button Component
+- Clean up styles
+- Props for styled-components
+
 ## 🧪 Site Resources
 
 This project was bootstrapped with
